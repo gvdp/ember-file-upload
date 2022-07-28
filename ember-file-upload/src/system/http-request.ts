@@ -97,6 +97,12 @@ export default class HTTPRequest {
     });
 
     this.request.onerror = bind(this, function () {
+      if (this.request.status === 0) {
+        this.onabort?.();
+        reject('Request aborted ');
+        return;
+      }
+
       reject(parseResponse(this.request));
     });
 

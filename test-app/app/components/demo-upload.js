@@ -20,7 +20,7 @@ export default class DemoUpload extends Component {
     let asset = new Asset({
       filename: file.name,
       file,
-    });
+    }); 
 
     this.args.files.pushObject(asset);
 

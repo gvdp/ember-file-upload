@@ -1,6 +1,6 @@
 {{#let (file-queue name="photos" onFileAdded=this.uploadProof) as |queue|}}
   <div class="docs-my-8 text-center">
-    <FileDropzone @queue={{queue}} class="demo-dropzone" as |dropzone|>
+    <FileDropzone @queue={{queue}} @allowFolderDrop={{@allowFolderDrop}} class="demo-dropzone" as |dropzone|>
       <div class="dropzone-upload-area upload {{if dropzone.active "active"}}">
         {{#if dropzone.supported}}
           <div class="emoji mb-16">
@@ -8,31 +8,31 @@
               ✨👽✨
             {{else}}
               👽
-            {{/if}}
+            {{/if}} 
           </div>
         {{/if}}
-
+ 
         <p>
           {{#if dropzone.supported}}
             Drag image, video or audio files here to upload.
           {{/if}}
-        </p>
-        <p>
+        </p> 
+        <p>  
           <label for="upload-photo">
             Or choose a file:
             <input
               type="file"
-              id="upload-photo"
+              id="upload-photo" 
               accept="image/*,video/*,audio/*"
               multiple
               {{queue.selectFile}}
             >
-          </label>
+          </label> 
         </p>
-
+ 
         {{#if queue.files.length}}
           Uploading {{queue.files.length}} files. ({{queue.progress}}%)
-        {{/if}}
+        {{/if}} 
       </div>
     </FileDropzone>
   </div>

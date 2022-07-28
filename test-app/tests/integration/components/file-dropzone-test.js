@@ -129,7 +129,7 @@ module('Integration | Component | FileDropzone', function (hooks) {
           @queue={{this.queue}}
           @multiple={{true}}
           @onDrop={{this.onDrop}} />
-      `);
+          `);
 
     await dragAndDrop(
       '.test-dropzone',
@@ -149,7 +149,7 @@ module('Integration | Component | FileDropzone', function (hooks) {
           @queue={{this.queue}}
           @multiple={{false}}
           @onDrop={{this.onDrop}} />
-      `);
+          `);
 
     await dragAndDrop(
       '.test-dropzone',

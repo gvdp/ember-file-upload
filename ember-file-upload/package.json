@@ -1,6 +1,6 @@
 {
-  "name": "ember-file-upload",
-  "version": "7.0.3",
+  "name": "@gvdp/ember-file-upload",
+  "version": "7.0.7",
   "description": "An uploader component for Ember apps",
   "keywords": [
     "ember-addon",
