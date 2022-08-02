@@ -28,8 +28,12 @@ import { assert } from '@ember/debug';
   @param {File} ...files One or more File objects
   @return {Promise}
  */
-export async function selectFiles(selector: string, ...files: (File | Blob)[]) {
-  const input = find(selector);
+export async function selectFiles(
+  selector: string | HTMLElement,
+  ...files: (File | Blob)[]
+) {
+
+  const input = selector instanceof HTMLElement ? selector : find(selector);
   assert(
     `Selector '${selector}' is not input element.`,
     input && input.tagName === 'INPUT'
