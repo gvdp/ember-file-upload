@@ -32,7 +32,6 @@ export async function selectFiles(
   selector: string | HTMLElement,
   ...files: (File | Blob)[]
 ) {
-
   const input = selector instanceof HTMLElement ? selector : find(selector);
   assert(
     `Selector '${selector}' is not input element.`,
@@ -82,6 +81,60 @@ export async function dragAndDrop(selector: string, ...files: (File | Blob)[]) {
   );
 
   const dataTransfer = { files };
+
+  await triggerEvent(dropzone, 'dragenter', { dataTransfer });
+  await triggerEvent(dropzone, 'dragover', { dataTransfer });
+  return triggerEvent(dropzone, 'drop', { dataTransfer });
+}
+
+interface FileSystemEntryStub {
+  isFile: boolean;
+  file: (callback: (file: File | Blob) => void) => void;
+}
+
+export async function dragAndDropDirectory(
+  selector: string,
+  folderName: string,
+  filesInDirectory: (File | Blob)[],
+  ...singleFiles: (File | Blob)[]
+) {
+  const dropzone = find(selector);
+  assert(`Selector '${dropzone}' could not be found.`, dropzone);
+  assert(
+    'All files must be instances of File/Blob type',
+    filesInDirectory.every((file) => file instanceof Blob)
+  );
+
+  const folderItem = {
+    webkitGetAsEntry: () => ({
+      isDirectory: true,
+      createReader: () => ({
+        readEntries: (callback: (entries: FileSystemEntryStub[]) => void) => {
+          const entryFiles = filesInDirectory.map((file) => {
+            return {
+              isFile: true,
+              file: (callback: (file: File | Blob) => void) => {
+                callback(file);
+              },
+            };
+          });
+          callback(entryFiles);
+        },
+      }),
+    }),
+    getAsFile: () => new File([], folderName, { type: '' }),
+  };
+
+  const singleFileItem = (singleFile: File) => ({
+    webkitGetAsEntry: () => ({
+      isDirectory: false,
+    }),
+    getAsFile: () => singleFile,
+  });
+
+  const dataTransfer = {
+    items: [folderItem, ...singleFiles.map(singleFileItem)],
+  };
 
   await triggerEvent(dropzone, 'dragenter', { dataTransfer });
   await triggerEvent(dropzone, 'dragover', { dataTransfer });
