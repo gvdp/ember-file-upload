@@ -43,6 +43,7 @@
     "lint:types": "tsc --noEmit",
     "start": "rollup --config --watch",
     "test": "echo 'Addon does not have tests, run tests in test-app'",
+    "release": "yarn build && npx standard-version --skip.changelog && git push --follow-tags origin release && npm publish",
     "release:minor": "yarn build && npm version minor && npm publish",
     "prepare": "yarn build"
   },
