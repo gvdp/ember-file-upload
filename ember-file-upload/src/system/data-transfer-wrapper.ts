@@ -58,19 +58,30 @@ export default class DataTransferWrapper {
       });
     };
 
-    const readAllFilesInDirectory = (item: DataTransferItem): Promise<File[]> =>
-      new Promise((resolve) => {
-        (item.webkitGetAsEntry() as FileSystemDirectoryEntry)
-          ?.createReader()
-          ?.readEntries(async (entries: FileSystemEntry[]) => {
+    const readAllFilesInDirectory = async (
+      item: DataTransferItem
+    ): Promise<File[]> => {
+      const reader = (
+        item.webkitGetAsEntry() as FileSystemDirectoryEntry
+      )?.createReader();
+      let readingDone = false;
+      const allFiles: File[] = [];
+      while (!readingDone) {
+        await new Promise((resolve) => {
+          reader?.readEntries(async (entries: FileSystemEntry[]) => {
+            readingDone = entries.length === 0;
             const readFiles: File[] = await Promise.all(
               entries.map(readEntry)
             ).catch((err) => {
               throw err;
             });
-            resolve(readFiles.filter((file) => file !== undefined) as File[]);
+            allFiles.push(...readFiles);
+            resolve({});
           });
-      });
+        });
+      }
+      return allFiles.filter((file) => file !== undefined) as File[];
+    };
 
     const readDataTransferItem = async (
       item: DataTransferItem
