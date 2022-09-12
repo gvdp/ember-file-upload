@@ -8,6 +8,7 @@
   "scripts": {
     "prepare": "yarn workspace ember-file-upload prepare",
     "test": "yarn workspace test-app test:ember -s",
+    "start": "yarn workspace test-app start",
     "release:minor": "yarn workspace @gvdp/ember-file-upload release:minor"
   },
   "repository": "https://github.com/adopted-ember-addons/ember-file-upload",
