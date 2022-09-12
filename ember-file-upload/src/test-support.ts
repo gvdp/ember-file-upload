@@ -104,20 +104,23 @@ export async function dragAndDropDirectory(
     'All files must be instances of File/Blob type',
     filesInDirectory.every((file) => file instanceof Blob)
   );
-
+  let filesRead = false;
   const folderItem = {
     webkitGetAsEntry: () => ({
       isDirectory: true,
       createReader: () => ({
         readEntries: (callback: (entries: FileSystemEntryStub[]) => void) => {
-          const entryFiles = filesInDirectory.map((file) => {
-            return {
-              isFile: true,
-              file: (callback: (file: File | Blob) => void) => {
-                callback(file);
-              },
-            };
-          });
+          const entryFiles = filesRead
+            ? []
+            : filesInDirectory.map((file) => {
+                return {
+                  isFile: true,
+                  file: (callback: (file: File | Blob) => void) => {
+                    callback(file);
+                  },
+                };
+              });
+          filesRead = true;
           callback(entryFiles);
         },
       }),
