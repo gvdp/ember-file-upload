@@ -17,11 +17,15 @@ function parseHeaders(headerString: string) {
 
 function parseResponse(request: XMLHttpRequest): Response {
   const body = request.response === '' ? null : request.response;
-  return new Response(body, {
-    status: request.status,
-    statusText: request.statusText,
-    headers: parseHeaders(request.getAllResponseHeaders()),
-  });
+  if (request.status >= 200 && request.status < 600) {
+    return new Response(body, {
+      status: request.status,
+      statusText: request.statusText,
+      headers: parseHeaders(request.getAllResponseHeaders()),
+    });
+  } else {
+    return Response.error();
+  }
 }
 
 export default class HTTPRequest {
@@ -63,6 +67,8 @@ export default class HTTPRequest {
       }
       return aborted.promise;
     };
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     promise.then = function (...args) {
       const newPromise = RSVP.Promise.prototype.then.apply(this, args);
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment

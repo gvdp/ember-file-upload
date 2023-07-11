@@ -31,11 +31,11 @@ function normalizeOptions(
   options.data = clone(options.data);
   options.fileKey = options.fileKey || 'file';
 
-  if (options.headers.Accept == null) {
+  if (options.headers['Accept'] == null) {
     if (!Array.isArray(options.accepts)) {
       options.accepts = [options.accepts];
     }
-    options.headers.Accept = options.accepts.join(',');
+    options.headers['Accept'] = options.accepts.join(',');
   }
 
   // Set Content-Type in the data payload
@@ -98,22 +98,26 @@ export function upload(
 
   request.ontimeout = () => {
     file.state = FileState.TimedOut;
+    file.queue?.flush();
   };
   request.onabort = () => {
     file.state = FileState.Aborted;
+    file.queue?.flush();
   };
   file.state = FileState.Uploading;
 
   return waitForPromise(
-    uploadFn(request, options).then(
-      function (response) {
+    uploadFn(request, options)
+      .then(function (response) {
         file.state = FileState.Uploaded;
+        file.queue?.uploadSucceeded(file, response);
         return response;
-      },
-      function (error) {
+      })
+      .catch(function (response) {
         file.state = FileState.Failed;
-        return RSVP.reject(error);
-      }
-    )
+        file.queue?.uploadFailed(file, response);
+        return RSVP.reject(response);
+      })
+      .finally(() => file.queue?.flush())
   );
 }

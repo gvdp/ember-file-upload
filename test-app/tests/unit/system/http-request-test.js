@@ -65,11 +65,11 @@ module('Unit | HttpRequest', function (hooks) {
           [['content-type', 'text/plain']],
           'headers match'
         );
-        assert.equal(response.status, 200, 'status is 200');
+        assert.strictEqual(response.status, 200, 'status is 200');
         return response.text();
       })
       .then((responeText) => {
-        assert.equal(responeText, 'ok', 'response text matches');
+        assert.strictEqual(responeText, 'ok', 'response text matches');
       });
 
     assert.deepEqual(this.request.requestBody, {
@@ -132,7 +132,7 @@ module('Unit | HttpRequest', function (hooks) {
         return response.text();
       })
       .then((reponseXml) => {
-        assert.equal(reponseXml, xml, 'xml response matches');
+        assert.strictEqual(reponseXml, xml, 'xml response matches');
       });
 
     assert.deepEqual(this.request.requestBody, {
@@ -163,7 +163,7 @@ module('Unit | HttpRequest', function (hooks) {
             [['content-type', contentType]],
             'headers match'
           );
-          assert.equal(response.status, 200, 'status is 200');
+          assert.strictEqual(response.status, 200, 'status is 200');
           return response.json();
         })
         .then((responseJson) => {
@@ -243,6 +243,20 @@ module('Unit | HttpRequest', function (hooks) {
     this.respond(204, { 'Content-Type': 'text/plain' }, '');
 
     return promise;
+  });
+
+  test('it returns an error response if the response status is ouside of the [200, 599] range', function (assert) {
+    assert.expect(3);
+
+    this.subject.open('PUT', 'http://emberjs.com');
+
+    this.subject.send({ filename: 'rfc.md' }).catch((response) => {
+      assert.strictEqual(response.status, 0, 'response status is 0');
+      assert.false(response.ok, 'response is not ok');
+      assert.strictEqual(response.type, 'error', 'response type is error');
+    });
+
+    this.respond(0, {}, 'timeout');
   });
 
   skip('onprogress', function () {});

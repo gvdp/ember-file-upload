@@ -1,3 +1,5 @@
+/* stylelint-disable */
+
 main {
   grid-column-gap: calc(var(--block-spacing-horizontal) * 3);
   display: grid;
@@ -31,4 +33,11 @@ body > header h1 ~ p {
 [role='document'] footer {
   display: flex;
   justify-content: space-between;
+}
+
+.demo-upload__dropzone {
+  padding: 100px;
+  border-radius: 15px;
+  border: 3px dashed grey;
+  margin-bottom: 2rem;
 }
