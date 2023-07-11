@@ -1,10 +1,106 @@
 
+## v8.1.0 (2023-06-20)
 
+#### :rocket: Enhancement
+* [#950](https://github.com/adopted-ember-addons/ember-file-upload/pull/950) Relax peer dependency version for @ember/test-helpers ([@seanCodes](https://github.com/seanCodes))
 
+#### :memo: Documentation
+* [#928](https://github.com/adopted-ember-addons/ember-file-upload/pull/928) Document `peerDependency` requirements for v8 ([@gilest](https://github.com/gilest))
+* [#927](https://github.com/adopted-ember-addons/ember-file-upload/pull/927) Demo upload – flush queue after successful upload ([@gilest](https://github.com/gilest))
 
+#### :house: Internal
+* [#952](https://github.com/adopted-ember-addons/ember-file-upload/pull/952) Pin `unist-util-find` to 1.0.2 ([@gilest](https://github.com/gilest))
+* [#946](https://github.com/adopted-ember-addons/ember-file-upload/pull/946) Add `ember-source` 3.25 to CI try scenarios ([@gilest](https://github.com/gilest))
+* [#944](https://github.com/adopted-ember-addons/ember-file-upload/pull/944) Migrate `test-app` to TypeScript. Add Typecheck job to CI ([@gilest](https://github.com/gilest))
+* [#943](https://github.com/adopted-ember-addons/ember-file-upload/pull/943) Replace renovate `yarnDedupeFewer` with `pnpmDedupe` ([@gilest](https://github.com/gilest))
+* [#942](https://github.com/adopted-ember-addons/ember-file-upload/pull/942) Reset pnpm config `auto-install-peers` to default ([@gilest](https://github.com/gilest))
+* [#941](https://github.com/adopted-ember-addons/ember-file-upload/pull/941) Update `test-app` browser targets from latest `ember-cli` blueprint ([@gilest](https://github.com/gilest))
+* [#937](https://github.com/adopted-ember-addons/ember-file-upload/pull/937) Use `@tsconfig/ember` ([@gilest](https://github.com/gilest))
+* [#940](https://github.com/adopted-ember-addons/ember-file-upload/pull/940) Restore floating dependency builds ([@gilest](https://github.com/gilest))
+* [#939](https://github.com/adopted-ember-addons/ember-file-upload/pull/939) Remove `@babel/eslint-parser`, `@rollup/plugin-babel` packages and `.watchmanconfig` ([@gilest](https://github.com/gilest))
+* [#921](https://github.com/adopted-ember-addons/ember-file-upload/pull/921) Upgrade pnpm to v8 ([@gilest](https://github.com/gilest))
+* [#936](https://github.com/adopted-ember-addons/ember-file-upload/pull/936) Upgrade rollup and babel config from `@embroider/addon-blueprint` ([@gilest](https://github.com/gilest))
 
+#### Committers: 2
+- Giles Thompson ([@gilest](https://github.com/gilest))
+- Sean Juarez ([@seanCodes](https://github.com/seanCodes))
 
+## v8.0.0 (2023-05-01)
 
+[Upgrade guide](https://ember-file-upload.pages.dev/docs/upgrade-guide#upgrading-to-v8)
+
+#### :boom: Breaking Change
+* [#922](https://github.com/adopted-ember-addons/ember-file-upload/pull/922) Drop support for node 14 ([@gilest](https://github.com/gilest))
+* [#917](https://github.com/adopted-ember-addons/ember-file-upload/pull/917) Move blueprint provided packages to peerDependencies ([@gilest](https://github.com/gilest))
+
+#### Committers: 1
+- Giles Thompson ([@gilest](https://github.com/gilest))
+
+## v7.4.0 (2023-05-01)
+
+#### :rocket: Enhancement
+* [#925](https://github.com/adopted-ember-addons/ember-file-upload/pull/925) Add `onUploadStarted`, `onUploadSucceeded` and `onUploadFailed` to `file-queue` helper  ([@gilest](https://github.com/gilest))
+
+#### Committers: 1
+- Giles Thompson ([@gilest](https://github.com/gilest))
+
+## v7.3.1 (2023-05-01)
+
+#### :bug: Bug Fix
+* [#914](https://github.com/adopted-ember-addons/ember-file-upload/pull/914) Return `Reponse.error` when status is outside of 200-599 range ([@herzzanu](https://github.com/herzzanu))
+
+#### :house: Internal
+* [#924](https://github.com/adopted-ember-addons/ember-file-upload/pull/924) Constrain renovate to pnpm version 7 ([@gilest](https://github.com/gilest))
+* [#923](https://github.com/adopted-ember-addons/ember-file-upload/pull/923) Bump ember-source to 4.12 ([@gilest](https://github.com/gilest))
+* [#920](https://github.com/adopted-ember-addons/ember-file-upload/pull/920) Bump build dependencies ([@gilest](https://github.com/gilest))
+* [#918](https://github.com/adopted-ember-addons/ember-file-upload/pull/918) Upgrade ember-cli to 4.12.0 ([@gilest](https://github.com/gilest))
+* [#916](https://github.com/adopted-ember-addons/ember-file-upload/pull/916) Add `@ember/string` as a dependency of ember packages ([@gilest](https://github.com/gilest))
+
+#### Committers: 2
+- Giles Thompson ([@gilest](https://github.com/gilest))
+- Sabin Hertanu ([@herzzanu](https://github.com/herzzanu))
+
+## v7.3.0 (2023-01-28)
+
+#### :rocket: Enhancement
+* [#897](https://github.com/adopted-ember-addons/ember-file-upload/pull/897) Export QueueName type ([@BoussonKarel](https://github.com/BoussonKarel))
+
+#### Committers: 1
+- [@BoussonKarel](https://github.com/BoussonKarel)
+
+## v7.2.0 (2023-01-22)
+
+#### :rocket: Enhancement
+* [#888](https://github.com/adopted-ember-addons/ember-file-upload/pull/888) Support ember-modifier v4 ([@jelhan](https://github.com/jelhan))
+
+#### Committers: 1
+- Jeldrik Hanschke ([@jelhan](https://github.com/jelhan))
+
+## v7.1.1 (2023-01-22)
+
+#### :memo: Documentation
+* [#898](https://github.com/adopted-ember-addons/ember-file-upload/pull/898) Update s3 `uploadImage` example ([@gilest](https://github.com/gilest))
+* [#860](https://github.com/adopted-ember-addons/ember-file-upload/pull/860) Demo page for documentation site ([@gilest](https://github.com/gilest))
+
+#### :house: Internal
+* [#900](https://github.com/adopted-ember-addons/ember-file-upload/pull/900) Restore base website package script ([@gilest](https://github.com/gilest))
+* [#894](https://github.com/adopted-ember-addons/ember-file-upload/pull/894) Switch to pnpm and restore `@ember/test-helpers` to latest patch ([@gilest](https://github.com/gilest))
+* [#885](https://github.com/adopted-ember-addons/ember-file-upload/pull/885) Revert @ember/test-helpers update and pin to 2.7.0 ([@gilest](https://github.com/gilest))
+* [#859](https://github.com/adopted-ember-addons/ember-file-upload/pull/859) Update ember-cli projects from 4.8.0 blueprint  ([@gilest](https://github.com/gilest))
+
+#### Committers: 1
+- Giles Thompson ([@gilest](https://github.com/gilest))
+
+## v7.1.0 (2022-08-30)
+
+#### :rocket: Enhancement
+* [#840](https://github.com/adopted-ember-addons/ember-file-upload/pull/840) Test helpers accept element or CSS selector ([@gilest](https://github.com/gilest))
+
+#### :house: Internal
+* [#838](https://github.com/adopted-ember-addons/ember-file-upload/pull/838) UploadHandler – use `unknown` type for Mirage DB ([@gilest](https://github.com/gilest))
+
+#### Committers: 1
+- Giles Thompson ([@gilest](https://github.com/gilest))
 
 ## v7.0.3 (2022-07-25)
 
