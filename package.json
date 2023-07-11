@@ -6,7 +6,6 @@
     "test-app"
   ],
   "scripts": {
-    "release:minor": "pnpm --filter @gvdp/ember-file-upload release:minor",
     "start": "pnpm --filter test-app start",
     "test": "pnpm --filter test-app test:ember -s",
     "website": "pnpm --filter website start"

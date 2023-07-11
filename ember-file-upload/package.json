@@ -44,8 +44,7 @@
     "start": "rollup --config --watch",
     "test": "echo 'Addon does not have tests, run tests in test-app'",
     "prepare": "pnpm build",
-    "release": "pnpm build && npx standard-version --skip.changelog && git push --follow-tags origin release && npm publish",
-    "release:minor": "pnpm build && npm version minor && npm publish"
+    "release": "release-it"
   },
   "dependencies": {
     "@ember/test-waiters": "^3.0.0",
@@ -174,8 +173,7 @@
       "tagName": "v${version}"
     },
     "github": {
-      "release": true,
-      "tokenRef": "GITHUB_AUTH"
+      "release": false
     }
   }
 }
