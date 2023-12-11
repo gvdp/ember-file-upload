@@ -76,7 +76,7 @@ export default class FileDropzoneComponent extends Component<FileDropzoneArgs> {
     return files.slice(0, 1);
   }
 
-  get isAllowed() {
+  get isAllowed(): boolean {
     const { environment } =
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -84,8 +84,8 @@ export default class FileDropzoneComponent extends Component<FileDropzoneArgs> {
 
     return (
       environment === 'test' ||
-      (this.dataTransferWrapper && this.dataTransferWrapper.source === 'os') ||
-      this.args.allowUploadsFromWebsites
+      (!!this.dataTransferWrapper && this.dataTransferWrapper.source === 'os') ||
+     !!this.args.allowUploadsFromWebsites
     );
   }
 

@@ -6,7 +6,7 @@
     "test-app"
   ],
   "scripts": {
-    "prepare": "yarn workspace ember-file-upload prepare",
+    "prepare": "yarn workspace @gvdp/ember-file-upload prepare",
     "test": "yarn workspace test-app test:ember -s",
     "start": "yarn workspace test-app start",
     "release:minor": "yarn workspace @gvdp/ember-file-upload release:minor"
@@ -17,5 +17,8 @@
     "@embroider/util": "^1.5.0",
     "ember-auto-import": "^2.0.0",
     "ember-cli-babel": "^7.26.6"
+  },
+  "volta": {
+    "node": "16.20.2"
   }
 }
