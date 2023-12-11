@@ -9,7 +9,8 @@
     "prepare": "yarn workspace @gvdp/ember-file-upload prepare",
     "test": "yarn workspace test-app test:ember -s",
     "start": "yarn workspace test-app start",
-    "release:minor": "yarn workspace @gvdp/ember-file-upload release:minor"
+    "release:minor": "yarn workspace @gvdp/ember-file-upload release:minor",
+    "release:patch": "yarn workspace @gvdp/ember-file-upload release:patch"
   },
   "repository": "https://github.com/adopted-ember-addons/ember-file-upload",
   "resolutions": {

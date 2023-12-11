@@ -1,6 +1,6 @@
 {
   "name": "@gvdp/ember-file-upload",
-  "version": "7.4.1",
+  "version": "7.4.2",
   "description": "An uploader component for Ember apps",
   "keywords": [
     "ember-addon",
@@ -45,6 +45,7 @@
     "test": "echo 'Addon does not have tests, run tests in test-app'",
     "release": "yarn build && npx standard-version --skip.changelog && git push --follow-tags origin release && npm publish",
     "release:minor": "yarn build && npm version minor && npm publish",
+    "release:patch": "yarn build && npm version patch && npm publish",
     "prepare": "yarn build"
   },
   "dependencies": {
